@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo test
-
+could which git, and if git is installed, clone the repo, otherwise wget list of fils
 echo wget some short url or list of urls
 echo move downloaded file to .bash_custom_profile
 echo if statement that will source custom profile if it exists, into .bashrc
