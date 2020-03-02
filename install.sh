@@ -8,8 +8,12 @@
 
 CURRENT_DIR=$(pwd)
 printf "Running script in: [%s]\n" $CURRENT_DIR
-
-TARGET_SETUP_FILE_DIR="$CURRENT_DIR/setup_env"
+SETUP_ENV_DIR="setup_env"
+if [[ "$CURRENT_DIR" =~ "$SETUP_ENV_DIR" ]]; then
+ printf "its there\n"
+ exit 0
+fi
+TARGET_SETUP_FILE_DIR="$CURRENT_DIR/"
 printf "Putting environment setup files in: [%s]\n" $TARGET_SETUP_FILE_DIR
 
 echo could which git, and if git is installed, clone the repo, otherwise wget list of fils
