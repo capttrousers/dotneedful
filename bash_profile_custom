@@ -1,3 +1,12 @@
-## add custom bash setup
+# Custom bash setup
+# Both custom profile and custom aliases will be sourced from .bashrc
 
-# both custom profile and custom aliases will be sourced from .bashrc
+##############################
+#  !!!!!!!!!!!!!!!!!!!!!!!!!!
+#       NOTE THIS FILE 
+#     WILL BE OVERWRITTEN
+#    MAKE EDITS IN GIT REPO
+#  !!!!!!!!!!!!!!!!!!!!!!!!!!
+##############################
+
+

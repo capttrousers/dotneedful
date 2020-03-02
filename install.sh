@@ -37,8 +37,8 @@ if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$HOME/.bashrc"; then
 fi
 
 function finishup() {
-    echo also move tmux howto into ~/docs
-    printf '\n\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_RC_FILE
+    printf "\n also move tmux howto into ~/docs\n"
+    printf '\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_RC_FILE
 }
 
 
