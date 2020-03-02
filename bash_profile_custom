@@ -1,0 +1,3 @@
+## add custom bash setup
+
+# both custom profile and custom aliases will be sourced from .bashrc

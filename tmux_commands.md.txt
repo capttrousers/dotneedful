@@ -31,5 +31,9 @@
 ### Cycle just between previous and current pane:
 `ctrl+b ;`
 
+### Switch to scroll mode
+`ctrl+b [` and `q` to exit
+
+
 ### Kill tmux server, along with all sessions:
 `tmux kill-server`
