@@ -11,7 +11,7 @@ printf "Running script in: [%s]\n" $CURRENT_DIR
 SETUP_ENV_DIR_NAME="setup_env"
 if [[ "$CURRENT_DIR" =~ "$SETUP_ENV_DIR_NAME" ]]; then
  printf "Cannot run script in the existing setup_env dir.\nExiting.\n\n"
- exit 0
+ exit 1
 fi
 TARGET_SETUP_FILE_DIR="$CURRENT_DIR/$SETUP_ENV_DIR_NAME"
 printf "Putting environment setup files in: [%s]\n" $TARGET_SETUP_FILE_DIR
