@@ -21,8 +21,8 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-alias ll='ls $LS_OPTIONS -AhFl'
-alias l='ls $LS_OPTIONS -CFhl'
+alias ll='ls -AFhl'
+alias l='ls -Fhl'
 
 alias open='xdg-open'
 

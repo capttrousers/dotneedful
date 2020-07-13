@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+echo Bootstrap script must already have been run, to get install.sh and files
+
 # This script works by having custom alias and profile files
 # It assumes these custom files DONT exist on the target system
 # So it will copy these files over any existing custom files. Update.
@@ -7,42 +9,38 @@
 # And appends sourceing them if it's not already added to bashrc
 
 CURRENT_DIR=$(pwd)
-printf "Running script in: [%s]\n" $CURRENT_DIR
-SETUP_ENV_DIR_NAME="setup_env"
-if [[ "$CURRENT_DIR" =~ "$SETUP_ENV_DIR_NAME" ]]; then
- printf "Cannot run script in the existing setup_env dir.\nExiting.\n\n"
- exit 1
-fi
-TARGET_SETUP_FILE_DIR="$CURRENT_DIR/$SETUP_ENV_DIR_NAME"
-printf "Putting environment setup files in: [%s]\n" $TARGET_SETUP_FILE_DIR
-
-echo could which git, and if git is installed, clone the repo, otherwise wget list of fils
-echo wget some short url or list of urls
+printf "Running script in: '%s'\n" $CURRENT_DIR
+printf "Pulling environment setup files from list:\n\n%s\n\n" "$(ls $CURRENT_DIR)"
 
 CUSTOM_BASH_PROFILE="bash_profile_custom"
 CUSTOM_BASH_ALIASES="bash_aliases_custom"
 
 set -x
-cp $TARGET_SETUP_FILE_DIR/$CUSTOM_BASH_PROFILE $HOME/.$CUSTOM_BASH_PROFILE
-cp $TARGET_SETUP_FILE_DIR/$CUSTOM_BASH_ALIASES $HOME/.$CUSTOM_BASH_ALIASES
+cp $CURRENT_DIR/$CUSTOM_BASH_PROFILE $HOME/.$CUSTOM_BASH_PROFILE
+cp $CURRENT_DIR/$CUSTOM_BASH_ALIASES $HOME/.$CUSTOM_BASH_ALIASES
 set +x
 
-BASH_RC_FILE="$HOME/.bashrc"
-printf "\n Using bashrc file: [%s]\n" $BASH_RC_FILE
+BASH_PROFILE_FILE="$HOME/.bashrc"
+printf "\nUsing bash profile file: [%s]\n" $BASH_PROFILE_FILE
 
-if ! grep -Eq "$CUSTOM_BASH_PROFILE" "$HOME/.bashrc"; then
-    printf '\n\n# Source custom bash profile\n' >> $BASH_RC_FILE
-    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_PROFILE >> $BASH_RC_FILE
+BASH_ALIASES_FILE="$HOME/.bash_aliases"
+printf "Using bash aliases file: [%s]\n" $BASH_ALIASES_FILE
+
+if ! grep -Eq "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE"; then
+    printf "adding profile to %s\n" $BASH_PROFILE_FILE
+    printf '\n\n# Source custom bash profile\n' >> $BASH_PROFILE_FILE
+    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_PROFILE >> $BASH_PROFILE_FILE
 fi
 
-if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$HOME/.bashrc"; then
-    printf '\n\n# Source custom bash aliases\n' >> $BASH_RC_FILE
-    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_ALIASES >> $BASH_RC_FILE
+if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE"; then
+    printf "adding aliases to %s\n" $BASH_ALIASES_FILE
+    printf '\n\n# Source custom bash aliases\n' >> $BASH_ALIASES_FILE
+    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_ALIASES >> $BASH_ALIASES_FILE
 fi
 
 function finishup() {
     printf "\n also move tmux howto into ~/docs\n"
-    printf '\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_RC_FILE
+    printf '\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_PROFILE_FILE
 }
 
 
