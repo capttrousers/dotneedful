@@ -26,6 +26,8 @@ else
     done
 fi
 
+echo
+
 set -x
 cp $TARGET_SETUP_DIR/$CUSTOM_BASH_PROFILE $HOME/.$CUSTOM_BASH_PROFILE
 cp $TARGET_SETUP_DIR/$CUSTOM_BASH_ALIASES $HOME/.$CUSTOM_BASH_ALIASES
@@ -37,16 +39,16 @@ printf "\nUsing bash profile file: [%s]\n" $BASH_PROFILE_FILE
 BASH_ALIASES_FILE="$HOME/.bash_aliases"
 printf "Using bash aliases file: [%s]\n" $BASH_ALIASES_FILE
 
-if ! grep -Eq "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE"; then
+if ! grep -Eq "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE" 2>&1 > /dev/null; then
     printf "adding profile to %s\n" $BASH_PROFILE_FILE
     printf '\n\n# Source custom bash profile\n' >> $BASH_PROFILE_FILE
-    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_PROFILE >> $BASH_PROFILE_FILE
+    printf '. ~/.%s\n' $CUSTOM_BASH_PROFILE >> $BASH_PROFILE_FILE
 fi
 
-if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE"; then
+if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE" 2>&1 > /dev/null; then
     printf "adding aliases to %s\n" $BASH_ALIASES_FILE
     printf '\n\n# Source custom bash aliases\n' >> $BASH_ALIASES_FILE
-    printf 'source %s/.%s\n' $HOME $CUSTOM_BASH_ALIASES >> $BASH_ALIASES_FILE
+    printf '. ~/.%s\n' $CUSTOM_BASH_ALIASES >> $BASH_ALIASES_FILE
 fi
 
 function finishup() {
