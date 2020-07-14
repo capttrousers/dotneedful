@@ -39,13 +39,13 @@ printf "\nUsing bash profile file: [%s]\n" $BASH_PROFILE_FILE
 BASH_ALIASES_FILE="$HOME/.bash_aliases"
 printf "Using bash aliases file: [%s]\n" $BASH_ALIASES_FILE
 
-if ! grep -Eq "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE" 2>&1 > /dev/null; then
+if ! grep -Eqs "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE"; then
     printf "adding profile to %s\n" $BASH_PROFILE_FILE
     printf '\n\n# Source custom bash profile\n' >> $BASH_PROFILE_FILE
     printf '. ~/.%s\n' $CUSTOM_BASH_PROFILE >> $BASH_PROFILE_FILE
 fi
 
-if ! grep -Eq "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE" 2>&1 > /dev/null; then
+if ! grep -Eqs "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE" 2>&1 > /dev/null; then
     printf "adding aliases to %s\n" $BASH_ALIASES_FILE
     printf '\n\n# Source custom bash aliases\n' >> $BASH_ALIASES_FILE
     printf '. ~/.%s\n' $CUSTOM_BASH_ALIASES >> $BASH_ALIASES_FILE
@@ -59,10 +59,10 @@ function finishup() {
 
 
 FOUND_BASHRC_SOURCING=false
-if grep -Eq .bashrc "$HOME/.bash_profile"; then
+if grep -Eqs .bashrc "$HOME/.bash_profile"; then
   FOUND_BASHRC_SOURCING=true
 fi
-if grep -Eq ".bashrc" "$HOME/.profile"; then
+if grep -Eqs ".bashrc" "$HOME/.profile"; then
   FOUND_BASHRC_SOURCING=true
 fi
 bar_line=
