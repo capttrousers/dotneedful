@@ -52,7 +52,9 @@ if ! grep -Eqs "$CUSTOM_BASH_ALIASES" "$BASH_ALIASES_FILE" 2>&1 > /dev/null; the
 fi
 
 function finishup() {
-    printf "\n also move tmux howto into ~/docs\n"
+    printf "Move tmux howto into ~/docs\n"
+    printf "DELETE the env setup temp files:\n"
+    printf "\n  rm -rf %s\n" $TARGET_SETUP_DIR
     printf '\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_PROFILE_FILE
 }
 
