@@ -1,9 +1,22 @@
 #!/bin/bash
 
+TARGET_SETUP_DIR="$HOME/temporary_env_setup_files"
+printf "target setup dir to bootstrap files into: %s\n" $TARGET_SETUP_DIR
 
-echo could which git, and if git is installed, clone the repo, otherwise wget list of fils
-echo wget some short url or list of urls
+if [[ -d $TARGET_SETUP_DIR ]]; then
+    printf "target setup directory already exists\n"
+    exit 1;
+fi
 
-echo for now, bootstrapping will just be git cloning the repo and/or pulling master 
+if git --version 2>&1 >/dev/null; then 
+    git clone https://github.com/capttrousers/dotneedful.git $TARGET_SETUP_DIR
+else 
+    wget -q https://github.com/capttrousers/dotneedful/archive/master.zip
+    unzip -q master.zip -d $TARGET_SETUP_DIR
+fi 
 
-echo then run install.sh from setup env directory.
+# echo for now, bootstrapping will just be copying the files from local repo
+# mkdir -p $TARGET_SETUP_DIR
+# cp -a $HOME/code/dotneedful/* $TARGET_SETUP_DIR
+
+printf "\n  Then run %s/install.sh\n" $TARGET_SETUP_DIR

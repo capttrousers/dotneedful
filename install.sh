@@ -1,6 +1,10 @@
 #!/bin/bash -e
 
-echo Bootstrap script must already have been run, to get install.sh and files
+TARGET_SETUP_DIR="$HOME/temporary_env_setup_files"
+INSTALL_SCRIPT_FILE="install.sh"
+CUSTOM_BASH_PROFILE="bash_profile_custom"
+CUSTOM_BASH_ALIASES="bash_aliases_custom"
+
 
 # This script works by having custom alias and profile files
 # It assumes these custom files DONT exist on the target system
@@ -10,10 +14,20 @@ echo Bootstrap script must already have been run, to get install.sh and files
 
 CURRENT_DIR=$(pwd)
 printf "Running script in: '%s'\n" $CURRENT_DIR
-printf "Pulling environment setup files from list:\n\n%s\n\n" "$(ls $CURRENT_DIR)"
 
-CUSTOM_BASH_PROFILE="bash_profile_custom"
-CUSTOM_BASH_ALIASES="bash_aliases_custom"
+if [[ ! -d $TARGET_SETUP_DIR ]]; then
+    printf "Bootstrap script must already have been run, to get install.sh and files into %s\n" $TARGET_SETUP_DIR
+    exit 1
+else
+    printf "Pulling environment setup files from : %s\n\nFiles:\n" $TARGET_SETUP_DIR
+    for file in "$TARGET_SETUP_DIR"/*
+    do
+        printf "  - %s\n" $file
+    done
+fi
+
+exit 0;
+
 
 set -x
 cp $CURRENT_DIR/$CUSTOM_BASH_PROFILE $HOME/.$CUSTOM_BASH_PROFILE
