@@ -41,7 +41,7 @@ function setupCustomBashInitFiles() {
     printf "\nUsing bash profile file: [%s]\n" $BASH_PROFILE_FILE
 
     BASH_ALIASES_FILE="$HOME/.bash_aliases"
-    printf "Using bash aliases file: [%s]\n" $BASH_ALIASES_FILE
+    printf "Using bash aliases file: [%s]\n\n" $BASH_ALIASES_FILE
 
     if ! grep -Eqs "$CUSTOM_BASH_PROFILE" "$BASH_PROFILE_FILE"; then
         printf "adding profile to %s\n" $BASH_PROFILE_FILE
@@ -59,10 +59,10 @@ function setupCustomBashInitFiles() {
 function verifyBashRCFileIsSourced() {
     FOUND_BASHRC_SOURCING=false
     if grep -Eqs .bashrc "$HOME/.bash_profile"; then
-    FOUND_BASHRC_SOURCING=true
+      FOUND_BASHRC_SOURCING=true
     fi
     if grep -Eqs ".bashrc" "$HOME/.profile"; then
-    FOUND_BASHRC_SOURCING=true
+      FOUND_BASHRC_SOURCING=true
     fi
     bar_line=
     if ! $FOUND_BASHRC_SOURCING; then
@@ -75,12 +75,12 @@ function verifyBashRCFileIsSourced() {
         printf "##############################################\n"
         printf "  Searched .bash_profile and .profile\n"
         printf "    for '.bashrc' and it was found.\n"
-        printf "##############################################\n"
+        printf "##############################################\n\n"
     fi
 }
 
 function finishup() {
-    printf "Move tmux howto into ~/docs\n"
+    printf "\nMove tmux howto into ~/docs\n"
     printf "DELETE the env setup temp files:\n"
     printf "\n  rm -rf %s\n" $TARGET_SETUP_DIR
     printf '\nYou should source your bashrc.\nRun:\n  source %s\n\n' $BASH_PROFILE_FILE
