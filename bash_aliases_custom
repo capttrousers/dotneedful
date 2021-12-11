@@ -24,8 +24,6 @@ fi
 alias ll='ls -aFhl'
 alias l='ls -Fhl'
 
-alias open='xdg-open'
-
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
