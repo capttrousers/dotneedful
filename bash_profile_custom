@@ -13,7 +13,8 @@ if [ -f `which powerline-daemon` ]; then
   powerline-daemon -q
   POWERLINE_BASH_CONTINUATION=1
   POWERLINE_BASH_SELECT=1
-  . /usr/share/powerline/bindings/bash/powerline.sh
+  # Note on new versions of Fedora, there is no ./bindings/bash folder, its directly in the powerline/ dir
+  . /usr/share/powerline/bash/powerline.sh
 fi
 
 export PATH="$HOME/.local/lib/bin:$HOME/.yarn/bin:$PATH"
