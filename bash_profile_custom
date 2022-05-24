@@ -19,6 +19,10 @@ fi
 
 export PATH="$HOME/.local/lib/bin:$HOME/.yarn/bin:$PATH"
 
+if [ -f "$HOME/.bash_aliases" ]; then
+	. "$HOME/.bash_aliases"
+fi
+
 # open any file/folder in Files or target arg
 open () {
     if [ "$#" -gt "1" ]; then
