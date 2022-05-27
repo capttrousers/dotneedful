@@ -31,3 +31,8 @@ open () {
     fi
     xdg-open "$1" &>/dev/null;
 }
+
+# add fedora upgrade utils to shell
+if [[ -f $HOME/code/env-setup/install/fedora/fedora_updates.sh ]]; then 
+    source $HOME/code/env-setup/install/fedora/fedora_updates.sh
+fi
