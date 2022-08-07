@@ -36,3 +36,6 @@ open () {
 if [[ -f $HOME/code/env-setup/install/fedora/fedora_updates.sh ]]; then 
     source $HOME/code/env-setup/install/fedora/fedora_updates.sh
 fi
+
+# add npm global dir to path
+PATH=$PATH:$HOME/.npm/bin
