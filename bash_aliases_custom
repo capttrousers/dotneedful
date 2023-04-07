@@ -27,3 +27,7 @@ alias l='ls -Fhl'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+if [ -x "$(command -v sqlite3)" ]; then
+  alias sqlite='sqlite3'
+fi
