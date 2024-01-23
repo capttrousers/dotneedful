@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # const strings
-TARGET_SETUP_DIR="$HOME/temporary_env_setup_files"
+TARGET_SETUP_DIR="${TARGET_SETUP_DIR:-${HOME}/temporary_env_setup_files}"
 INSTALL_SCRIPT_FILE="install.sh"
 CUSTOM_BASH_PROFILE="bash_profile_custom"
 CUSTOM_BASH_ALIASES="bash_aliases_custom"

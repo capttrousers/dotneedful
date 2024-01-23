@@ -17,7 +17,6 @@ if [ -f `which powerline-daemon` ]; then
   . /usr/share/powerline/bash/powerline.sh
 fi
 
-export PATH="$HOME/.local/lib/bin:$HOME/.yarn/bin:$PATH"
 
 if [ -f "$HOME/.bash_aliases" ]; then
 	. "$HOME/.bash_aliases"
@@ -37,5 +36,12 @@ if [[ -f $HOME/code/env-setup/install/fedora/fedora_updates.sh ]]; then
     source $HOME/code/env-setup/install/fedora/fedora_updates.sh
 fi
 
-# add npm global dir to path
-PATH=$PATH:$HOME/.npm/bin
+export PATH="$HOME/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/.local/lib/bin:$PATH"
+
+# add npm & yarn global dir to path
+export PATH="$PATH:$HOME/.npm/bin"
+export PATH="$PATH:$HOME/.yarn/bin"

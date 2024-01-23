@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET_SETUP_DIR="$HOME/temporary_env_setup_files"
+TARGET_SETUP_DIR="${TARGET_SETUP_DIR:-${HOME}/temporary_env_setup_files}"
 printf "target setup dir to bootstrap files into: %s\n" $TARGET_SETUP_DIR
 
 if ! git --version 2>&1 >/dev/null; then 
